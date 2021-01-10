@@ -1,12 +1,13 @@
 #include<stdlib.h>
 #include<stdio.h>
-int n=0;
+int n = 0 ;
 struct node
 {
    struct node *prev;
    int data;
    struct node *next; 
 }*head;
+
 void disp();
 void create();
 void insertBefore();
@@ -15,10 +16,15 @@ void deleteMiddle();
 
 int main()
 {
-   int x,c=0;
+   int x=1;
+   
+  
    printf("Enter num of nodes\n");
    scanf("%d",&n);
    create(n);
+
+   
+   
    while(x)
    {
        printf("\n0 Exit \n1 insert before a given value \n2 delete middle node\n3 display\n4 number of nodes\n");
@@ -28,6 +34,7 @@ int main()
            case 1 :insertBefore();break;
            case 2 :deleteMiddle();break; 
            case 3 :disp();break;
+           case 4 :printf("Number of nodes is %d\n",n);break;
 
        }
    }
@@ -50,7 +57,7 @@ void disp()
     printf("\n");
    
 }
-void create()
+void create(int n)
 {   int i;
     struct node *new;
     head = (struct node*)malloc(sizeof(struct node));
@@ -73,6 +80,8 @@ void create()
 
       
     }
+    
+
 
 }
 void insertBefore()
