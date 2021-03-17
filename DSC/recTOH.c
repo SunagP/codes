@@ -1,12 +1,12 @@
 #include<stdio.h>
 #include<math.h>
 
-void toh(int n,int a,int b , int c)
+void toh(int n,char a,char b , char c)
 {
     if(n>0)
     {
         toh(n-1,a,c,b);
-        printf("Move disc %d from %d to %d \n",n,a,c);
+        printf("Move disc %d from %c to %c \n",n,a,c);
         toh(n-1,b,a,c);
     }
 }
@@ -18,6 +18,6 @@ int main()
     scanf("%d",&n);
     printf("Total number of steps required to move %d discs is %.0f\n",n,pow(2,n)-1);
   
-    toh(n,1,2,3);
+    toh(n,'a','b','c');
     return 0;
 }

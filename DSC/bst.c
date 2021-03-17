@@ -187,6 +187,22 @@ int leafnodes(struct node* newnode)
     return count;
  
 }
+int single = 0;
+int singleChild(struct node* newnode)
+{
+ 
+    if(newnode != NULL)
+    {
+        singleChild(newnode->left);
+        if((newnode->left == NULL) && (newnode->right != NULL))
+        {
+            single++;
+        }
+        singleChild(newnode->right);
+    }
+    return single;
+ 
+}
 int height(struct node* node)  
 { 
    if (node==NULL)  
@@ -208,15 +224,25 @@ int fullnode(struct node *root)
 {
     if (root == NULL){
       return 0;
-   }
-   int result = 0;
-   if (root->left && root->right){
+    }
+    int result = 0;
+    if (root->left && root->right){
       result++;
-   }
-   result += (fullnode(root->left) +
-   fullnode(root->right));
+    }
+    result += (fullnode(root->left) +
+    fullnode(root->right));
 //   printf("%d",result);
-   return result;
+    return result;
+//  if(root != NULL)
+//     {
+//         fullnode(root->left);
+//         if((root->left) && (root->right))
+//         {
+//             count++;
+//         }
+//         leafnodes(root->right);
+//     }
+//     return count;
 }
 struct node* cloneBinaryTree(struct node *root){
     if(root == NULL)
@@ -290,7 +316,7 @@ int main()
                 sumnodes = sumofNodes(root);
                 printf("Sum of all nodes is %d",sumnodes);
             }  break;       
-                    
+            case 12:   printf("Number of single child nodes in the Tree are : %d\n",singleChild(root));break;     
 
         }
     }

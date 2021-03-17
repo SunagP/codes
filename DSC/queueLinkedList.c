@@ -15,8 +15,7 @@ void display();
 int main()
 {
     int val,p;
-     int x=11
-     ;
+     int x=1;
     while(x)
   {
       printf("\n1 EnQueue \n2 DeQueue \n3 Peek \n4 display\n0 Exit\n");

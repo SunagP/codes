@@ -18,7 +18,7 @@ char pop()
 }
 int isnum(char x)
 {
-    if(x>'0'&&'9')
+    if(x>'0'&& x<'9')
     return (int)x;
 }
 
@@ -34,7 +34,7 @@ int order(char x)
 }
 
 int main()
-{    int i=0;
+{    
     char exp[100];
     char *e, x;
     char *a;
@@ -48,7 +48,7 @@ int main()
         if(isalnum(*e))
            { printf("%c ",*e);
             
-            i++;
+            
            }
        /* if(isnum(*e))
            printf("%c",*e);*/
