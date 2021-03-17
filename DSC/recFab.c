@@ -8,7 +8,7 @@ int main()
   printf("Fibonacci series terms are: ");
   while(m!=n)
   {
-    printf("%d ",fab(n));
+    printf("%d ",fab(m));
     m++;
   }
   return 0;

@@ -72,7 +72,7 @@ void delEnd()
 {
     struct node *p,*q;
     p=first;
-    /
+    
     while(first->next->next!=NULL)
     {
         p=p->next;

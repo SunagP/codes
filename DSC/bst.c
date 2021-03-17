@@ -82,14 +82,25 @@ void inorder(struct node *root)
         inorder(root->right);
     }
 }
-void preorder(struct node *root)
+void inorderrev(struct node *root)
 {
+    if(root!=NULL)
+    {
+        inorderrev(root->right);
+        printf("%d ->",root->data);
+        inorderrev(root->left);
+    }
+}
+void preorder(struct node *root)
+{ 
     if(root!=NULL)
     {   
         printf("%d ->",root->data);
         inorder(root->left);
         inorder(root->right);
+        
     }
+    
 }
 void postorder(struct node *root)
 {
@@ -113,6 +124,7 @@ int search(struct node *root,int key)
     
     
 }
+
 int rightMin(struct node *root)
 {
     struct node *temp = root;
@@ -192,25 +204,56 @@ int height(struct node* node)
    } 
 }  
   
-  
+int fullnode(struct node *root)
+{
+    if (root == NULL){
+      return 0;
+   }
+   int result = 0;
+   if (root->left && root->right){
+      result++;
+   }
+   result += (fullnode(root->left) +
+   fullnode(root->right));
+//   printf("%d",result);
+   return result;
+}
+struct node* cloneBinaryTree(struct node *root){
+    if(root == NULL)
+        return NULL;
+    /* create a copy of root node */
+    struct node* newNode = create(root->data);
+    /* Recursively create clone of left and right sub tree */
+    newNode->left = cloneBinaryTree(root->left);
+    newNode->right = cloneBinaryTree(root->right);
+    /* Return root of cloned tree */
+    return newNode;
+}
     
-
+ int sumofNodes(struct node* root)
+ {
+   if (root == NULL)
+    return 0;
+   return(root->data + sumofNodes(root->left) + sumofNodes(root->right));
+ }
+ 
 
 int main()
 {
-    struct node *root=NULL;
+    struct node *root=NULL,*clone;
     int x=1,data,key,key1;
+    
    
     while(x)
     {
-        printf("\n1 insert\n2 inorder\n3 postorder\n4 preorder\n5 search an elememt\n6 delete an element\n7 leafnode count\n8 height of tree\n0 exit\n");
+        printf("\n1 insert\n2 inorder\n3 postorder\n4 preorder\n5 search an elememt\n6 delete an element\n7 leafnode count\n8 height of tree\n9 Number og full nodes\n10 copy of bst\n11 sum of all nodes\n0 exit\n");
         scanf("%d",&x);
         switch(x)
         {
             case 1 : printf("enter data\n");
                      scanf("%d",&data);
                      root = insert(root,data);break;
-            case 2 : printf("Inorder traversal \n");inorder(root);break;
+            case 2 : printf("Inorder traversal \n");inorder(root);printf("Inorder traversal rev\n");inorderrev(root);break;
             case 3 : printf("postorder traversal \n");postorder(root);break;
             case 4 : printf("preorder traversal \n");preorder(root);break;
             case 5 : printf("Enter data to search\n");
@@ -237,7 +280,16 @@ int main()
                      printf("Number of leaf nodes in the Tree are : %d\n",leafnodes(root));break;
                      
             case 8 : printf("Height of tree is %d", height(root));break;
-                     
+            case 9 : {int full;
+            full = fullnode(root);
+            printf(" full node %d",full);}break;
+            case 10:clone = cloneBinaryTree(root);
+            printf("Inorder traversal of copy tree \n");inorder(clone);break;
+            case 11: {
+                int sumnodes = 0;
+                sumnodes = sumofNodes(root);
+                printf("Sum of all nodes is %d",sumnodes);
+            }  break;       
                     
 
         }

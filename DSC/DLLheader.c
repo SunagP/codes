@@ -32,7 +32,7 @@ int main()
        scanf("%d",&x);
        switch(x)
        {
-           case 1 :insertBefore();break;
+           case 1 :insertBefore();printf("%d",header->next->data);   break;
            case 2 :deleteMiddle();break; 
            case 3 :disp();break;
            case 4 : printf("Number of nodes is %d\n",header->data);break;
@@ -105,6 +105,7 @@ void insertBefore()
         newnode->prev=NULL;
         newnode->next=head;
         head=newnode;
+        header->next = head;
         return;
     }
     while(temp->next->data!=num)

@@ -130,10 +130,43 @@ struct Node *deleteNode(struct Node *root, int key) {
     }
   }
 
-  if (root == NULL)
-    return root;
+  // if (root == NULL)
+  //   return root;
 
-  
+    //  if(root==NULL)
+    //  return NULL;
+    // else if(root->key<key)
+    //   root->right = deleteNode(root->right,key);
+    // else if(root->key > key)
+    //   root->left = deleteNode(root->left,key);
+    // else
+    // {   if(root->left==NULL && root->right==NULL)
+    //      {
+    //          free(root);
+    //          return NULL;
+
+    //      } 
+    //     else if(root->right==NULL)
+    //     {
+    //         struct node *temp=root->left;
+    //         free(root);
+    //         return temp;
+    //     }
+    //     else if(root->left==NULL)
+    //     {
+    //         struct node *temp=root->right;
+    //         free(root);
+    //         return temp;
+    //     }
+    //     else
+    //     {
+    //        int rm = minValueNode(root->right);
+    //        root->key=rm;
+    //        root->right=deleteNode0(root->right , rm);
+    //     }
+    // }
+        
+      return root; 
   root->height = 1 + max(height(root->left),
                height(root->right));
 
