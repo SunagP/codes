@@ -26,5 +26,5 @@ main() {
    int x, y, z;
    x = 10;
    y = 20;
-   x + y = z;
+   // x + y = z;
 }
