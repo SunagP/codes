@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html>
+<head><title>table</title>
+    <style>
+  table,th,td{
+    
+     border: 2px solid black;
+     text-align:left;
+     padding: 15px;
+     /* border-collapse: collapse; */
+
+  }
+  table{
+      width:100%;
+      
+  }
+ 
+#cc{
+    text-align: center;
+}
+#t01 {
+  width: 100%;
+  background-color: #f1f1c1;
+}
+#t01 tr td:nth-child(odd){
+    background: greenyellow;
+}
+/* #t01 tr:nth-col(1){
+    background: greenyellow;
+} */
+    </style>
+</head>
+<body>
+    <table id="t01">
+        <caption><h1>sample</h1> </caption>
+        <tr>
+            <th>aadasdas</th>
+            <th>basdasf</th>
+            <th>cafasf</th>
+        </tr>
+        <tr>
+            <td>1afasfa</td>
+            <td>2afas</td>
+            <td>3afdfd</td>
+        </tr>
+        <tr>
+            <td>4afsd</td>
+            <td>5afsaf</td>
+            <td>6afasfaf</td>
+        </tr>
+    </table>
+    <br><br><br>
+    <table>
+    <caption><h2>Rowspan</h2> </caption>
+    <tr>
+        <th>aadasdas</th>
+        <td>basdasf</td>
+        
+    </tr>
+    <tr>
+        <th rowspan="2">1afasfa</td>
+            
+        <td>4afsd</td>
+                
+    </tr>    
+            <tr>
+                <td>4afsd</td>
+                
+            </tr>
+            <tr>
+                <th>aadasdas</th>
+                <td>basdasf</td>
+                
+            </tr>
+    
+
+    </table>
+
+<br><br><br>
+
+<table>
+    <caption><h2>col span</h2></caption>
+    <tr>
+        <th>dsfsdfsdf</th>
+        <th id ="cc" colspan="2">sfsdfsdf</th>
+    </tr>
+    <tr>
+        <td>dsadsfsd</td>
+        <td>fsdfsdf</td>
+        <td>fdfdsf</td>
+    </tr>
+</table>
+
+<br><br><br>
+<table>
+    <tr>
+        <th>CI</th>
+        <th>All genders</th>
+        <th colspan="2">By gender</th>
+        <td>1</td>
+        
+    </tr>
+    <tr>
+        <th>Rural</th>
+        <td>1213154</td>
+        <td>1544545</td>
+        <td>1545454</td>
+    </tr>
+</table>
+
+<br><br><br>
+
+<style type="text/css">
+	.TFtableCol{
+		width:100%; 
+		border-collapse:collapse; 
+	}
+	.TFtableCol td{ 
+		padding:7px; border:#4e95f4 1px solid;
+	}
+	/* improve visual readability for IE8 and below */
+	.TFtableCol tr{
+		background: #b8d1f3;
+	}
+	/*  Define the background color for all the ODD table columns  */
+	.TFtableCol tr td:nth-child(odd){ 
+		background: #b8d1f3;
+	}
+	/*  Define the background color for all the EVEN table columns  */
+	.TFtableCol tr td:nth-child(even){
+		background: #dae5f4;
+	}
+</style>
+
+<table class="TFtableCol">
+	<tr><td>Text</td><td>Text</td><td>Text</td><td>Text</td></tr>
+	<tr><td>Text</td><td>Text</td><td>Text</td><td>Text</td></tr>
+	<tr><td>Text</td><td>Text</td><td>Text</td><td>Text</td></tr>
+	<tr><td>Text</td><td>Text</td><td>Text</td><td>Text</td></tr>
+</table>
+
+</body>
+</html>

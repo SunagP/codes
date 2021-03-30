@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<script> 
+document.write( "<table> <tr> <th>Number</th> <th>Square</th> <th>Cube</th> </tr>" ) 
+for(var n=15; n<=25; n++) 
+{ 
+document.write( "<tr><td>" + n + "</td><td>" + n*n + "</td><td>" + n*n*n + "</td></tr>" ) 
+} 
+document.write( "</table>" ) 
+</script> 
+
+<script>
+    document.write("<table><tr><th>num</th><th>4 times</th></tr>")
+    for(var i =0;i<=4;i++){
+        document.write("<tr><td>" +i + "</td><td>" +4*i + "</td></tr>")
+    }
+    document.write("</table>")
+</script>
+</head> 
+<body>
+    <title>Title of the document</title>
+    <style>
+      #blur {
+        font-size: 40px;
+        color: transparent;
+        text-shadow: 0 0 8px black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="blur">Blurry Text</div>
+    <script>
+        var x,y,x;
+        x = prompt("num1");
+        y = prompt("num2");
+        z = prompt("num3");
+        document.write("max is "+Math.max(x,y,z)+" ")
+        // alert(Math.max(x,y,z))
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>layout</title>
+        <style>
+            * {
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #666;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+/* nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+li a{
+ float:left;
+ text-decoration:none;
+ padding:16px;
+ display:block;} */
+
+article {
+  float: left;
+  padding: 20px;
+  width: 70%;
+  background-color: #f1f1f1;
+  height: 300px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+/* section::after {
+  content: "";
+  display: table;
+  clear: both;
+} */
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+/* @media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+} */
+        </style>
+        <link rel="stylesheet" href="">
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
+    </head>
+
+    <body>
+        <header>hiiiii</header>
+        <section>
+            <nav><ul>
+                <li>123</li>
+                <li>456</li>
+                <li>789</li>
+            </ul></nav>
+            <article>
+                Lorem,  &nbsp;&gt;ipsum dolor sit amet consectetur adipisicing elit. Odit nobis dolores ratione maiores repellat suscipit fuga animi impedit sed, ex illo exercitationem eaque? Possimus saepe est earum eveniet animi adipisci!
+            </article>
+        </section>
+        <footer>byeee</footer>
+    </body>
+</html>

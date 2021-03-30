@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Philips</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Niconne&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <h1>LED BULBS</h1>
+
+    <h2>Philips Hue Bulbs</h2>
+    <!-- <form id="myForm" action="gettest.php" method="GET"> -->
+        <h4><label for="fname">Username:</label></h4>
+        <input type="text" id="fname" name="fname">
+
+        <h4>
+            Bring your smart home to life with the most connected light in the world.
+            <p>Our Products:</p>
+        </h4>
+        <input type="checkbox" id="ca" name="bulb1" value="Bulb1">
+        <label for="bulb1"> Four 100-watt light bulbs for $2.39 </label><br>
+        <input type="checkbox" id="cb" name="bulb2" value="Bulb2">
+        <label for="bulb2"> Eight 100-watt light bulbs for $4.29 </label><br>
+        <input type="checkbox" id="cc" name="bulb3" value="Bulb3">
+        <label for="bulb3"> Four 100-watt, long-life light bulbs for $3.95 </label><br>
+        <input type="checkbox" id="cd" name="bulb4" value="Bulb4">
+        <label for="bulb4"> Eight 100-watt, long-life light bulbs for $7.49 </label><br><br>
+
+        <p>Buy now! Pay through:</p>
+        <input type="radio" id="paya" name="card" value="visa">
+        <label for="card1">Visa</label><br>
+        <input type="radio" id="payb" name="card" value="master">
+        <label for="card2">MasterCard</label><br>
+        <input type="radio" id="payc" name="card" value="discover">
+        <label for="card3">Discover</label><br><br>
+        <button id="submit">Submit</button>
+        <input type="button" onclick="myFunction()" value="Reset form">
+        <p id="demo"></p>
+        <p id="c"></p>
+        <p id="c1"></p>
+        <p id="c2"></p>
+        <p id="c3"></p>
+        <p id="rd"></p>
+    <!-- </form> -->
+    <script>
+        function myFunction() {
+            document.getElementById("myForm").reset();
+        }
+    </script>
+
+</body>
+
+</html>

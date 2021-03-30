@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<head>
+    <title>Moving Balls</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        body {
+    margin: 20px;
+    padding: 0;
+}
+#ball_a{
+    position: absolute;
+    left: 0px;
+    height: 100px;
+    width: 100px;
+    background-color: blue;
+    border-radius: 50%;
+}
+#ball_b{
+    position: absolute;
+    right: 0px;
+    top :50px;
+    height: 50px;
+    width: 50px;
+    background-color: maroon;
+    border-radius: 50%;
+}
+.balla
+{
+    /* animation */
+    animation-name: roll;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+.ballb
+{
+    /* animation */
+    animation-name: roll1;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes roll 
+{  
+  100% {transform: translateX(687px) rotate(0);}
+}
+
+@keyframes roll1 
+{
+    100% {transform: translateX(-700px) rotate(0);}
+}
+    </style>
+</head>
+<body>
+    <div id="ball_a"></div>
+    <div id="ball_b"></div>
+
+    <script>
+        var ball = document.getElementById("ball_a");
+        ball.onclick = () => 
+        {
+            document.getElementById("ball_a").classList.add("balla");
+            document.getElementById("ball_b").classList.add("ballb");
+        }
+    </script>
+    
+    <script>
+        var ball1 = document.getElementById("ball_b");
+        ball1.onclick = () => 
+        {
+            document.getElementById("ball_b").classList.add("ballb");
+            document.getElementById("ball_a").classList.add("balla");
+        }
+    </script>
+
+
+</body>
+</html>
