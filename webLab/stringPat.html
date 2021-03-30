@@ -1,0 +1,29 @@
+<html><body><script type="text/javascript">
+    //Accept array list of names, return number of names in array that end with either ie or y
+    function find(names) {
+    var count = 0;
+    var tmp, pattern1, pattern2;
+    
+    while(names.length){
+    tmp = names.shift();
+    /* pattern1 = tmp.toLowerCase().slice(-2);
+    pattern2 = tmp.toLowerCase().slice(-1);
+    if( pattern1 =="ie" || pattern2 =="y" ) 
+        count++; 
+     */
+    if(tmp.toLowerCase().search(/(ie|y)$/)!=-1)
+     count++; 
+    }
+        return count;
+    }
+    var list = ["Dinesh Gowda", "Mary GracIe", "Sandeep Sharma", "Archana Reddy"];
+    var i, count;
+    
+    document.write("List of Names: ","<br />");
+    for(i=0;i<list.length;i++)
+    document.write(list[i], "<br />");
+    count=find(list);
+    document.write("<br />",count, " names end with either 'ie' or 'y'");
+    document.write("<br />", list);
+    </script> </body></html>
+    
