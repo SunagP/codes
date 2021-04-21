@@ -1,6 +1,6 @@
 // package javacodes;
 import java.util.Scanner;
-import java.util.*;
+// import java.util.*;
 public class student {
     int id;
     String name;
@@ -21,7 +21,8 @@ public class student {
         m2 = sc.nextInt();
         System.out.print("Enter marks in subjects 3 : ");
         m3 = sc.nextInt(); 
-        
+        sc.close();
+
         
     }
     // void input(int id,String){

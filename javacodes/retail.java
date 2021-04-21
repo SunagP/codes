@@ -1,6 +1,6 @@
 // package javacodes;
 import java.util.Scanner;
-import java.util.*;
+// import java.util.*;
 public class retail {
     Scanner sc= new Scanner(System.in);
     int unit;

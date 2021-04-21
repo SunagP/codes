@@ -2,15 +2,15 @@
 import java.util.Scanner;
 class bank
 {
-    
+    Scanner sc=new Scanner(System.in);
     String name,accNum;
     int bal=0;
     void read()
     {
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Enter customer name: \n");
+        
+        System.out.println("Enter customer name: ");
         name=sc.next();
-        System.out.println("Enter account number: \n");
+        System.out.println("Enter account number: ");
         accNum=sc.next();
     }
     void disp()
@@ -21,7 +21,7 @@ class bank
     }
     void deposit()
     {
-        Scanner sc=new Scanner(System.in);
+        // Scanner sc=new Scanner(System.in);
         System.out.println("enter amount to be deposited: ");
         int d=sc.nextInt();
         bal=bal+d;
@@ -29,7 +29,7 @@ class bank
     }
     void withdraw()
     {
-        Scanner sc=new Scanner(System.in);
+        // Scanner sc=new Scanner(System.in);
         System.out.println("enter amount to be withdrawn: ");
         int w=sc.nextInt();
         if(bal>=w)
@@ -65,7 +65,7 @@ class bankMain
           case 3: b.disp();break;
           case 0:break ;
         }
-    }
+    }sc.close();
         
     }
 }
