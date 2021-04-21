@@ -1,4 +1,4 @@
-package javacodes;
+// package javacodes;
 import java.util.Scanner;
 class bank
 {

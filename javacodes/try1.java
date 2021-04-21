@@ -1,4 +1,4 @@
-package javacodes;
+// package javacodes;
 
 public class try1 {
     public static void main(String[] args) {  

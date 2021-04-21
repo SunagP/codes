@@ -1,4 +1,4 @@
-package javacodes;
+// package javacodes;
 import java.util.Scanner;
 import java.util.*;
 public class retail {
