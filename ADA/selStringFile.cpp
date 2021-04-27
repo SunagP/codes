@@ -1,5 +1,7 @@
 #include<iostream>
 #include<string.h>
+#include <cstring>
+#include<fstream>
 
 using namespace std;
 
@@ -28,23 +30,45 @@ int flag=0;
        
        
   }
-  if(flag==0){
-      cout<<"pattern not found\n";
-  }
+  // if(flag==0){
+  //     cout<<"pattern not found\n";
+  // }
+  // cout<<count<<endl;
 // cout<<"count/x :"<<count/x<<endl<<"count/(x*x) : "<<count/(x*x)<<endl<<"count/y : "<<count/y<<endl<<"count/xy : "<<count/(x*y)<<endl;
 }
 
 int main()
 {
  
-    string x,y;
+    string x[100],y;
+    int n=1000,m=5;
+
+   
+    fstream file;
+    string word, t, q, filename;
   
+    filename = "file.txt";
   
-    cout<<"Enter text \n";
-    getline(cin,x);
+    file.open(filename.c_str());
+  
+
     cout<<"Enter pattern \n";
     getline(cin,y);
-    strMatching(x,y);
+    int i =0;
+    while (file >> word)
+    {
+        // displaying content
+        cout << word << endl;
+        // strcpy(s, word);
+    // strMatching(word,y);
+    }
+    
+        
+  // cout << text << endl;
+    // cout<<"Enter text \n";
+    // getline(cin,x);
+    
+    
     
     return 0;
 
