@@ -56,13 +56,13 @@ int main()
         cout<< arrA[i]<<" ";
     }
     cout<<endl;
-    selection_sort(arrA,n);
+    selection_sort(arrD,n);
     cout<<"Sorted array descending arary is : ";
     for(int i=0;i<n;i++){
         cout<< arrA[i]<<" ";
     }
     cout<<endl;
-    selection_sort(arrA,n);
+    selection_sort(arrR,n);
     cout<<"Sorted array descenting arary is : ";
     for(int i=0;i<n;i++){
         cout<< arrA[i]<<" ";

@@ -1,17 +1,16 @@
 #include<iostream>
 using namespace std;
-
+int count = 0;
 void selection_sort(int *a ,int n){
     
     for(int i=0; i<n-1; i++)
     { int m =i;
         for (int j=i+1; j<n; j++){
+         count++;
          if(a[j]<a[m])
           m = j;
         }
-        // a[i] = a[i]+a[m];
-        // a[m] = a[i]-a[m];
-        // a[i] = a[i]-a[m];
+       
         swap(a[i],a[m]);
 
     }
@@ -38,5 +37,6 @@ int main()
     for(int i=0;i<n;i++){
         cout<< arr[i]<<" ";
     }
+    cout<<"\ncount value :"<<count;
 
 }

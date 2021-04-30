@@ -1,12 +1,12 @@
 #include<iostream>
 
 using namespace std;
-
+int count=0;
 int pos(int a[],int l,int h){
     int i = l+1;
     int j = h;
     int pivot = a[l];
-    int count = 0;
+    
 
     while(i<=j){
         while(a[i]<=pivot)
@@ -25,10 +25,10 @@ int pos(int a[],int l,int h){
     swap(a[j],a[l]);
 
     return j;
-    cout << count;
+   
 
 }
-// int partition(int *a,int l,int h)
+// int partition(int *a,int l,int h) //taking last element as pivot
 // {
 //     int p=a[h];
 //     int i=l;
@@ -55,24 +55,7 @@ int pos(int a[],int l,int h){
 //     swap(a[i],a[h]);
 //     return i;
 // }
-// int pos(int arr[], int low, int high)
-// {
-//     int pivot = arr[high];    // pivot
-//     int i = (low - 1);  // Index of smaller element
- 
-//     for (int j = low; j <= high- 1; j++)
-//     {
-//         // If current element is smaller than or
-//         // equal to pivot
-//         if (arr[j] <= pivot)
-//         {
-//             i++;    // increment index of smaller element
-//             swap(arr[i], arr[j]);
-//         }
-//     }
-//     swap(arr[i + 1], arr[high]);
-//     return (i + 1);
-// }
+
 
 void quickSort(int a[],int l,int h){
 
@@ -103,4 +86,5 @@ int main(){
     for(int i=0;i<n;i++){
         cout<< arr[i]<<" ";
     }
+     cout <<"\ncount value :" <<count;
     }

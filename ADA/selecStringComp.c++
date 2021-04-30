@@ -1,13 +1,13 @@
 #include<iostream>
 #include<string.h>
-
+int count=0;
 using namespace std;
 
 void strMatching(string t ,string p)
 {
   int x = t.length();
   int y = p.length();
-  int count=0;
+  
 int flag=0;
   for(int i = 0;i<=x-y;i++)
   {   int j;
@@ -45,7 +45,7 @@ int main()
     cout<<"Enter pattern \n";
     getline(cin,y);
     strMatching(x,y);
-    
+    cout<<"\ncount value :"<<count;
     return 0;
 
 }
