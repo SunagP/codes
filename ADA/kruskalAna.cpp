@@ -28,28 +28,39 @@ int getParent(int v,int parent[]){
 
  int main(){
 
-    int n,E,w=0;
-    cout<<"Enter number vertices and edges\n";
-    cin>>n>>E;
+    int n,e,w=0,k=0;
+    cout<<"Enter number vertices\n";
+    cin>>n;
+    e=n*(n-1);
 
-    Edge edges[E];
-    cout<<"Enter source destination and weight for each edge\n";
-    for(int i=0;i<E;i++){
+    Edge edges[e];
+    // cout<<"Enter source destination and weight for each edge\n";
+    // for(int i=0;i<E;i++){
 
-        cin>>edges[i].src>>edges[i].dest>>edges[i].wt;
+    //     cin>>edges[i].src>>edges[i].dest>>edges[i].wt;
 
+    // }
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n-1;j++)
+        {
+            edges[k].src=i;
+            edges[k].dest=j;
+            edges[k].wt=1+rand()%100;
+            k++;
+        }
     }
+
     //Kruskal algo
 
     //sorting the edges array in increasing order
-
-    sort(edges,edges+E,compare);
-
     
+    sort(edges,edges+e,compare);
 
     Edge output[n-1];
 
     //Union find algorithm to detect cycle
+
 
     int parent[n];
 
@@ -60,7 +71,6 @@ int getParent(int v,int parent[]){
     }
 
     int x=0;
-
     int i=0;
 
     while(x<n-1){
@@ -78,8 +88,9 @@ int getParent(int v,int parent[]){
         }
         i++;
     }
-    //Printing the MST
+   
     cout<<"\n"<<endl;
+    cout<<"Minimal Spanning Tree"<<endl;
     for(int i=0;i<n-1;i++){
 
         if(output[i].src<output[i].dest){
@@ -95,6 +106,7 @@ int getParent(int v,int parent[]){
     }
   cout << "cost of minimal spanning tree " << w << endl;
   cout<<"count :"<<c;
+  cout<<"\ne^2 =>"<<(float)c/(e*e)<<"\neloge =>"<<(float)c/(e*log(e))<<"\ne =>"<<(float)c/(e)<<endl;
     return 0;
 
 }
