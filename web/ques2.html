@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type = "text/javascript">
+            var diffx, diffy, element;
+            function grab(event)
+            {
+            element=event.currentTarget;
+            var X=parseInt(element.style.left);
+            var Y=parseInt(element.style.top);
+            x=event.clientX - X;
+            y=event.clientY - Y;
+            document.addEventListener("mousemove",move,true);
+            document.addEventListener("mouseup",drop,true);
+            event.stopPropagation();
+
+            
+            event.preventDefault();
+            }
+            function move(event)
+            {
+            element.style.left=(event.clientX - x) + "px";
+            element.style.top=(event.clientY - y) + "px";
+            document.getElementById(element).innerHTML=event.clientX;
+            element.style.left=(event.clientX ) + "px";
+            element.style.top=(event.clientY) + "px";
+            event.stopPropagation(); 
+            }
+            function drop(event)
+            {
+            document.removeEventListener("mouseup", drop, true); 
+            document.removeEventListener("mousemove", move, true);
+            event.stopPropagation();
+            }
+            </script>
+        <link href="q2.css" rel="stylesheet" type="text/css" />
+    </head>
+<body>
+<h1>HTML Lists</h1>
+<li>
+    <ol id="fruits" ><h3>Fruits</h3>
+       <li><span style="position: absolute;top: 300px;left: 300px;" onmousedown="grab(event);"><b>APPLE</b></span></li>
+       <li><span style="position: absolute;top: 340px;left: 300px;" onmousedown="grab(event);"><b>MANGO</b></li>
+       <li><span style="position: absolute;top: 380px;left: 300px;" onmousedown="grab(event);"><b>ORANGE</b></li>
+    </ol>
+    <ul id="veg" style="list-style-type:square"><h3>Vegetables</h3>
+        <li><span style="position: absolute;top: 300px;left: 440px;" onmousedown="grab(event);"><b>POTATO</b></span></li>
+        <li><span style="position: absolute;top: 340px;left: 440px;" onmousedown="grab(event);"><b>TOMATO</b></li>
+        <li><span style="position: absolute;top: 380px;left: 440px;" onmousedown="grab(event);"><b>ONION</b></li>
+     </ul>
+     <ul id="gro" style="list-style-type:circle"><h3>Groceries</h3>
+        <li><span style="position: absolute;top: 300px;left: 600px;" onmousedown="grab(event);"><b>RICE</b></span></li>
+        <li><span style="position: absolute;top: 340px;left: 600px;" onmousedown="grab(event);"><b>FLOUR</b></li>
+        <li><span style="position: absolute;top: 380px;left: 600px;" onmousedown="grab(event);"><b>PULSES</b></li>
+     </ul>
+</li>
+</body>
+</html>
