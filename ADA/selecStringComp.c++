@@ -15,7 +15,7 @@ int flag=0;
       {   count++;
           if(t[i+j] == p[j])
            continue;
-        else
+          else
            break;
             
       }

@@ -30,41 +30,41 @@ void Graph::addEdge(int src, int dest) {
   adj[dest].push_back(src);
 }
 
-void Graph::BFS(int start,int* visited) {
-  // visited = new int[n];
-  // for (int i = 0; i < n; i++)
-  //   visited[i] = 0;
+// void Graph::BFS(int start,int* visited) {
+//   // visited = new int[n];
+//   // for (int i = 0; i < n; i++)
+//   //   visited[i] = 0;
 
-  list<int> q;
+//   list<int> q;
 
-  visited[start] = 1;
-  q.push_back(start);
+//   visited[start] = 1;
+//   q.push_back(start);
 
  
-  while (!q.empty()) {
-    int cur = q.front();
-    cout << " "<< cur << " ";
-    q.pop_front();
+//   while (!q.empty()) {
+//     int cur = q.front();
+//     cout << " "<< cur << " ";
+//     q.pop_front();
 
     
-    for(auto i:adj[cur]) {
+//     for(auto i:adj[cur]) {
       
-      if (visited[i]==0) {
-        visited[i] = 1;
-        q.push_back(i);
-      }
-    }
-  }
-}
-void Graph:: BFSdisc(int s,int* visited) {
-  visited = new int[n];
-  for (int i = 0; i < n; i++)
-    visited[i] = 0;
+//       if (visited[i]==0) {
+//         visited[i] = 1;
+//         q.push_back(i);
+//       }
+//     }
+//   }
+// }
+// void Graph:: BFSdisc(int s,int* visited) {
+//   visited = new int[n];
+//   for (int i = 0; i < n; i++)
+//     visited[i] = 0;
    
-   for (int u=0; u<n; u++)
-     if (visited[u] == 0)
-   BFS(u,visited);
-}
+//    for (int u=0; u<n; u++)
+//      if (visited[u] == 0)
+//    BFS(u,visited);
+// }
 
 
 
@@ -171,8 +171,8 @@ for(int i=0;i<e;i++){
   cout<<"Enter starting vertex : ";
   int s ;
   cin>>s;
-  cout<<"iterative BFS....\n";
-  g.BFSdisc(s,g.visited);
+  // cout<<"iterative BFS....\n";
+  // g.BFSdisc(s,g.visited);
 
   cout<<"\nrecursive BFS....\n";
   g.BFSrec(s,g.visited);

@@ -83,11 +83,11 @@ int main(){
     //     cout<<desc[i]<<" ";
     // }
      heapsort(ran,n+1);
-    //  cout<<"\nRandom\n";
-    // cout<<"\nsorted array :\n";
-    // for(int i=1;i<=n;i++){
-    //     cout<<ran[i]<<" ";
-    // }
+     cout<<"\nRandom\n";
+    cout<<"\nsorted array :\n";
+    for(int i=1;i<=n;i++){
+        cout<<ran[i]<<" ";
+    }
 
     cout<<"\ncount : "<<count<<endl;
     cout<<"nlogn : "<<count/(n*log(n))<<"\nn^2 : "<<count/float(n*n);

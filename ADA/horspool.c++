@@ -6,14 +6,14 @@ int horspool(string t,string p){
     int n =t.length();
     int m = p.length();
 
-    int table[130];
+    int Stable[130];
 
     for (int i=0;i<126;i++){
-        table[i] = m;
+        Stable[i] = m;
 
     }
     for(int j=0;j<=m-2;j++){
-        table[p[j]] = m-1-j;
+        Stable[p[j]] = m-1-j;
     }
 
     int i = m-1;
@@ -27,7 +27,7 @@ int horspool(string t,string p){
     if(k==m)
      return i-m+1;
     else 
-     i = i+table[t[i]];
+     i = i+Stable[t[i]];
     }
     return -1;
 }
