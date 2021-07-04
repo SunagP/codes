@@ -6,7 +6,7 @@ interface operations
     void push(int a);
     void displayTop();
 }
-    class stack2 {
+    class stack2{
     ArrayList<Integer> stack=new ArrayList<Integer>();
     int currentSize=0;
     void push(int a)
@@ -46,7 +46,7 @@ public class stack1
     {
         stack2 S=new stack2();
         Scanner sc=new Scanner(System.in);
-        int x;
+        int x=1;
         do
         {
             System.out.println("enter 0 to exit");
@@ -68,7 +68,7 @@ public class stack1
                 break;
                 case 0 : break;
             }
-        } while(x>0);
+        } while(x!=0);
         sc.close();
     }
 }
