@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "..\\.."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"iostream": "cpp",
+			"deque": "cpp",
+			"string": "cpp",
+			"vector": "cpp"
+		},
+		"java.project.sourcePaths": [
+			"codes/javacodes"
+		]
+	}
+}

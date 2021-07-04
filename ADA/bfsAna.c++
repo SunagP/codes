@@ -209,9 +209,9 @@ cout<<"Count : "<<count;
 
 
 cout<<"\n\n";
-cout<<"Count1 : "<<count1;
+// cout<<"Count1 : "<<count1;
 
- cout<<"\ne^2 =>"<<(float)count1/(e*e)<<"\neloge =>"<<(float)count1/(e*log(e))<<"\ne =>"<<(float)count1/(e)<<"\nvloge=>"<<v*log(e);
+//  cout<<"\ne^2 =>"<<(float)count1/(e*e)<<"\neloge =>"<<(float)count1/(e*log(e))<<"\ne =>"<<(float)count1/(e)<<"\nvloge=>"<<v*log(e);
 
   
   return 0;
