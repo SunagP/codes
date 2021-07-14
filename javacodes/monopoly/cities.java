@@ -1,41 +1,41 @@
-package monopoly;
 // city names
 public class cities {
     public String C[]=new String[32];
     public cities(){
-    C[0]="city0";
-    C[1]="city1";
-    C[2]="city2";
-    C[3]="city3";
-    C[4]="city4";
-    C[5]="city5";
-    C[6]="city6";
-    C[7]="city7";
-    C[8]="city8";
-    C[9]="city9";
-    C[10]="city10";
-    C[11]="city11";
-    C[12]="city12";
-    C[13]="city13";
-    C[14]="city14";
-    C[15]="city15";
-    C[16]="city16";
-    C[17]="city17";
-    C[18]="city18";
-    C[19]="city19";
-    C[20]="city20";
-    C[21]="city21";
-    C[22]="city22";
-    C[23]="city23";
-    C[24]="city24";
-    C[25]="city25";
-    C[26]="city26";
-    C[27]="city27";
-    C[28]="city28";
-    C[29]="city29";
-    C[30]="city30";
-    C[31]="city31";
+    C[0]="Go";
+    C[1]="Mediteranian Avenue";
+    C[2]="Community Chest";
+    C[3]="Italic Avenue";
+    C[4]="Income Tax";
+    C[5]="Reading Railroad";
+    C[6]="Oriental Avenue";
+    C[7]="Chance";
+    C[8]="Jail";
+    C[9]="St.Charle's Place";
+    C[10]="Electric Company";
+    C[11]="States Avenue";
+    C[12]="Viriginiya Avenue";
+    C[13]="Peninsylvenia Railroad";
+    C[14]="St.James' Place";
+    C[15]="Community Chest";
+    C[16]="Free Parking";
+    C[17]="Kentucky Avenue";
+    C[18]="Chance";
+    C[19]="Indiana Avenue";
+    C[20]="Illinors Avenue";
+    C[21]="B&O Railroad";
+    C[22]="Atlantic Avenue";
+    C[23]="Community Chest";
+    C[24]="Go to Jail";
+    C[25]="Pacific Avenue";
+    C[26]="North Carolina Avenue";
+    C[27]="Ventinor Avenue";
+    C[28]="Peninsylvenia Avenue";
+    C[29]="Short Line";
+    C[30]="Park Place";
+    C[31]="Chance";
     }
+    
     
 }
 // coordinates for pieces x[i][j] => x coordinate for piece of player i in city j 
@@ -111,37 +111,37 @@ class coordinates{
     x[1][30]=385;
     x[1][31]=385;
     //FOR THIRD PLAYER
-    for(int i=0;i<8;i++)
+    for(int i=0;i<=8;i++)
     {
         x[2][i]=x[1][i]-15;
     }
-    for(int i=9;i<16;i++)
+    for(int i=9;i<=16;i++)
     {
         x[2][i]=x[1][i];
     }
-    for(int i=16;i<24;i++)
+    for(int i=17;i<=24;i++)
     {
         x[2][i]=x[1][i]+15;
     }
-    for(int i=24;i<32;i++)
+    for(int i=25;i<32;i++)
     {
         x[2][i]=x[1][i];
     }
     
     // FOR 4th PLAYER
-    for(int i=0;i<8;i++)
+    for(int i=0;i<=8;i++)
     {
         x[3][i]=x[2][i]-15;
     }
-    for(int i=9;i<16;i++)
+    for(int i=9;i<=16;i++)
     {
         x[3][i]=x[2][i];
     }
-    for(int i=16;i<24;i++)
+    for(int i=17;i<=24;i++)
     {
         x[3][i]=x[2][i]+15;
     }
-    for(int i=24;i<32;i++)
+    for(int i=25;i<32;i++)
     {
         x[3][i]=x[2][i];
     }

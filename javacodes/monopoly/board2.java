@@ -1,4 +1,3 @@
-package monopoly;
 import java.awt.Color;
 import java.awt.*;
 import javax.swing.*;
@@ -8,13 +7,16 @@ import java.sql.*;
 import java.awt.event.*;
 import java.util.Random;
 public class board2 extends JFrame implements ActionListener
-{   int moveNumber=0;
+{   
+    JLabel currentStatus =new JLabel("<html><h1>Woohooo....Game Started❤❤</h1>");
+    JLabel owns[]=new JLabel[32];
+    int moveNumber=0;
     ImageIcon cities[]=new ImageIcon[32]; 
-    String name[]=new String[3];
+    static String name[]=new String[3];
     // money of each player
     int m[]=new int[3];
     //class that implements action listener for displaying info of players and cities
-    information in=new information();
+    information1 in=new information1();
     // class that contains names of cities - cities.java
     cities c=new cities();
     // determines whose turn to play
@@ -29,15 +31,15 @@ public class board2 extends JFrame implements ActionListener
     // icon of the frame
     ImageIcon icon=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/icon.jpg");
     // buttons for all 32 places
-    JButton btns[]=new JButton[32];
+    static JButton btns[]=new JButton[32];
     // buttons for all players
     JButton players[]=new JButton[3];
     // end game and end turn buttons
     JButton game[]=new JButton[2];
     // button to roll dice
-    JButton roll=new JButton("roll dice");
+    JButton roll=new JButton("Roll dice");
     // button for buying 
-    JButton buy=new JButton("buy");
+    JButton buy=new JButton("Buy");
     Cursor cur = new Cursor(Cursor.HAND_CURSOR);
     // images for places
     ImageIcon city1=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/123.jpg");
@@ -48,10 +50,10 @@ public class board2 extends JFrame implements ActionListener
     //images for dice faces 
     ImageIcon dice1,dice2;
     // area to display info about current city
-    JTextArea city=new JTextArea();
+    // JTextArea city=new JTextArea();
     static JTextArea info=new JTextArea();
     // background of the frame
-    ImageIcon background=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/bgblur.png");    
+    ImageIcon background=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/bgfade.jpg");    
     JLabel back=new JLabel("",background,JLabel.CENTER); 
     // labels where dice faces are shown
     JLabel f1,f2;
@@ -59,7 +61,183 @@ public class board2 extends JFrame implements ActionListener
     JTextArea pieces[]=new JTextArea[3];
     // class that contains coordinates for pieces - cities.java
     coordinates xy=new coordinates();
-    // string x,y are names of 2 players entered in start frame by user - monopoly.java                                
+    // string x,y are names of 2 players entered in start frame by user - monopoly.java 
+    public void communityChest(int task,int turn,int m[],JButton players[],int board)
+    {
+        switch(task)
+        {
+            case 100:   m[turn]=m[turn]-(board*100);
+                        try{  
+                        Class.forName("com.mysql.jdbc.Driver");  
+                        
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");  
+                        String query="update players set amount="+m[turn]+" where pid="+turn; 
+                        String query1="update players set amount=amount+100 where pid <> "+turn;
+                        con.prepareStatement(query).execute(); 
+                        con.prepareStatement(query1).execute();
+                        players[turn].setText(name[turn]+"("+m[turn]+")");
+                        for(int i=0;i<players.length;i++)
+                        {
+                            if(i!=turn)
+                            {
+                                m[i]=m[i]+100;
+                                players[i].setText(name[i]+"("+m[i]+")");
+                            }
+                        } 
+                        con.close();
+                
+                        }catch(Exception ex){ System.out.println(ex);}
+                        break; 
+            case 101:   m[turn]=m[turn]+(board*50);
+                        try{  
+                        Class.forName("com.mysql.jdbc.Driver");  
+                        
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");  ; 
+                        String query="update players set amount="+m[turn]+" where pid="+turn; 
+                        String query1="update players set amount=amount-50 where pid <> "+turn;
+                        con.prepareStatement(query).execute(); 
+                        con.prepareStatement(query1).execute(); 
+                        con.close();
+                        players[turn].setText(name[turn]+"("+m[turn]+")");
+                        for(int i=0;i<players.length;i++)
+                        {
+                            if(i!=turn)
+                            {
+                                m[i]=m[i]-50;
+                                players[i].setText(name[i]+"("+m[i]+")");
+                            }
+                        } 
+                
+                        }catch(Exception ex){ System.out.println(ex);} 
+                        break;
+            case 102:   m[turn]=m[turn]-250;
+                        try{  
+                        Class.forName("com.mysql.jdbc.Driver");  
+                        
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root",""); 
+                        String query="update players set amount="+m[turn]+" where pid="+turn;
+                        con.prepareStatement(query).execute();  
+                        con.close();
+                        players[turn].setText(name[turn]+"("+m[turn]+")");
+                
+                        }catch(Exception ex){ System.out.println(ex);} 
+                        break;
+            case 103:   m[turn]=m[turn]-1000;
+                        try{  
+                        Class.forName("com.mysql.jdbc.Driver");  
+                        
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");
+                        String query="update players set amount="+m[turn]+" where pid="+turn; 
+                        con.prepareStatement(query).execute();  
+                        con.close();
+                        players[turn].setText(name[turn]+"("+m[turn]+")");
+                
+                        }catch(Exception ex){ System.out.println(ex);}
+                        break; 
+            case 104:   m[turn]=m[turn]+500;
+                        try{  
+                        Class.forName("com.mysql.jdbc.Driver");  
+                        
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root",""); 
+                        String query="update players set amount="+m[turn]+" where pid="+turn;
+                        con.prepareStatement(query).execute();  
+                        con.close();
+                        players[turn].setText(name[turn]+"("+m[turn]+")");
+                
+                        }catch(Exception ex){ System.out.println(ex);} 
+                        break;
+            case 105:   m[turn]=m[turn]-200;
+                        try{  
+                        Class.forName("com.mysql.jdbc.Driver");  
+                        
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root",""); 
+                        String query="update players set amount="+m[turn]+" where pid="+turn; 
+                        con.prepareStatement(query).execute(); 
+                        con.close();
+                        players[turn].setText(name[turn]+"("+m[turn]+")");
+                
+                        }catch(Exception ex){ System.out.println(ex);} 
+                        break;
+        }
+    }                               
+    public void chance(int task,int turn,int m[],JButton players[],int board)
+    {
+        switch(task)
+        {
+            case 100:   m[turn]=m[turn]-250;
+                        try{  
+                        Class.forName("com.mysql.jdbc.Driver");  
+                        
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");  
+                        String query="update players set amount="+m[turn]+" where pid="+turn; 
+                        con.prepareStatement(query).execute(); 
+                        players[turn].setText(name[turn]+"("+m[turn]+")"); 
+                        con.close();
+                
+                        }catch(Exception ex){ System.out.println(ex);}
+                        break; 
+            case 101:   m[turn]=m[turn]+400;
+                        try{  
+                        Class.forName("com.mysql.jdbc.Driver");  
+                        
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");  ; 
+                        String query="update players set amount="+m[turn]+" where pid="+turn; 
+                        con.prepareStatement(query).execute(); 
+                        con.close();
+                        players[turn].setText(name[turn]+"("+m[turn]+")");
+                
+                        }catch(Exception ex){ System.out.println(ex);} 
+                        break;
+            case 102:   m[turn]=m[turn]+500;
+                        try{  
+                        Class.forName("com.mysql.jdbc.Driver");  
+                        
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root",""); 
+                        String query="update players set amount="+m[turn]+" where pid="+turn;
+                        con.prepareStatement(query).execute();  
+                        con.close();
+                        players[turn].setText(name[turn]+"("+m[turn]+")");
+                
+                        }catch(Exception ex){ System.out.println(ex);} 
+                        break;
+            case 103:   m[turn]=m[turn]-300;
+                        try{  
+                        Class.forName("com.mysql.jdbc.Driver");  
+                        
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");
+                        String query="update players set amount="+m[turn]+" where pid="+turn; 
+                        con.prepareStatement(query).execute();  
+                        con.close();
+                        players[turn].setText(name[turn]+"("+m[turn]+")");
+                
+                        }catch(Exception ex){ System.out.println(ex);}
+                        break; 
+            case 104:   m[turn]=m[turn]+200;
+                        try{  
+                        Class.forName("com.mysql.jdbc.Driver");  
+                        
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root",""); 
+                        String query="update players set amount="+m[turn]+" where pid="+turn;
+                        con.prepareStatement(query).execute();  
+                        con.close();
+                        players[turn].setText(name[turn]+"("+m[turn]+")");
+                
+                        }catch(Exception ex){ System.out.println(ex);} 
+                        break;
+            case 105:   m[turn]=m[turn]-500;
+                        try{  
+                        Class.forName("com.mysql.jdbc.Driver");  
+                        
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root",""); 
+                        String query="update players set amount="+m[turn]+" where pid="+turn; 
+                        con.prepareStatement(query).execute(); 
+                        con.close();
+                        players[turn].setText(name[turn]+"("+m[turn]+")");
+                
+                        }catch(Exception ex){ System.out.println(ex);} 
+                        break;
+        }
+    }                                
     board2(String x,String y,String z)
     {  
        name[0] = x;
@@ -101,7 +279,7 @@ public class board2 extends JFrame implements ActionListener
             
             x2.setInt(1, 1);
             x2.setString(2,y);
-            x2.setString(3,"pink");
+            x2.setString(3,"red");
             x2.setInt(4, 10000);
 
             x3.setInt(1, 2);
@@ -120,7 +298,13 @@ public class board2 extends JFrame implements ActionListener
     }
     //  on click action for roll dice
     public void actionPerformed(ActionEvent e)
-    {   moveNumber++;
+    { 
+        int flag=0;
+        String where="",what="";
+        int task=r.nextInt(6)+100;
+        String work="";
+        buy.setEnabled(true);
+        moveNumber++;
         int play=-1;
         int amt=0;
         int rent=0;
@@ -128,18 +312,72 @@ public class board2 extends JFrame implements ActionListener
         // random numbers chosen
         face1=r.nextInt(6)+1;
         face2=r.nextInt(6)+1;
+        // face1=1;
+        // face2=1;
         sumDice=face1+face2;
-
         // images corresponding to those random numbers
-        dice1=new ImageIcon(getClass().getResource(face1+".png"));
-        dice2=new ImageIcon(getClass().getResource(face2+".png"));
+        dice1=new ImageIcon(getClass().getResource("face"+face1+".png"));
+        dice2=new ImageIcon(getClass().getResource("face"+face2+".png"));
         // setting labels to those images for display
         f1.setIcon(dice1);
         f2.setIcon(dice2);
         // setting new position for player with current turn
+        if(p[turn]+sumDice>=32)
+        {
+            flag=1;
+        }
         p[turn]=(p[turn]+face1+face2)%32;
+        where=name[turn]+" landed on "+c.C[p[turn]];
+        if(p[turn]==8)
+        {
+            where="<html>"+name[turn]+" landed on "+c.C[p[turn]]+"<br> Rs 500 debited from your account";
+        }
+        if(p[turn]==4)
+        {
+            where="<html>"+name[turn]+" landed on "+c.C[p[turn]]+"<br> Rs 250 debited from your account";
+        }
+        if(p[turn]==0||p[turn]==8||p[turn]==16||p[turn]==24||p[turn]==31||p[turn]==23||p[turn]==18||p[turn]==15||p[turn]==7||p[turn]==4||p[turn]==2)
+        {
+            buy.setEnabled(false);
+        }
+        if(p[turn]==31||p[turn]==18||p[turn]==7)
+        {
+            try{  
+                Class.forName("com.mysql.jdbc.Driver");  
+                
+                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");  
+                Statement stmt=con.createStatement(); 
+                String query = "select task from chance where cid="+task;
+                ResultSet rs=stmt.executeQuery(query);  
+                while(rs.next())
+                {
+                    work = rs.getString(1); 
+                }
+                con.close();  
+           
+            }catch(Exception ex){ System.out.println(ex);}
+            chance(task, turn, m, players, 2); 
+        }
+        if(p[turn]==23||p[turn]==15||p[turn]==2)
+        {
+            try{  
+                Class.forName("com.mysql.jdbc.Driver");  
+                
+                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");  
+                Statement stmt=con.createStatement(); 
+                String query = "select work from CommunityChest where Cid="+task;
+                ResultSet rs=stmt.executeQuery(query);  
+                while(rs.next())
+                {
+                    work = rs.getString(1); 
+                }
+                con.close();  
+           
+            }catch(Exception ex){ System.out.println(ex);}
+            communityChest(task, turn, m, players, 2); 
+        }
         // shows info of current city + recent player in it
-        city.setText(c.C[p[turn]]+"\n"+players[turn].getText());
+        // city.setText(c.C[p[turn]]+"\n"+players[turn].getText());
         // sets location of piece of player with current turn
         pieces[turn].setLocation(xy.x[turn][p[turn]],xy.y[turn][p[turn]]);
 
@@ -155,7 +393,7 @@ public class board2 extends JFrame implements ActionListener
             while(rs.next())
             {
                 rent = rs.getInt(2);
-                play=rs.getInt(1); 
+                play=rs.getInt(1);
             }
               
             con.close();  
@@ -167,13 +405,43 @@ public class board2 extends JFrame implements ActionListener
         }
         else if(play>-1)
         {
+            buy.setEnabled(false);
             m[turn]=m[turn]-rent;
             amt=m[turn];
             m[play]=m[play]+rent;
+            what="<br>you paid Rs"+rent+" to "+name[play]+" as rent";
         }
         else
         {
+            if(p[turn]==8)
+            {
+                m[turn]=m[turn]-500;
+            }
+            if(p[turn]==4)
+            {
+                m[turn]=m[turn]-250;
+            }
+            if(flag==1)
+            {
+                m[turn]=m[turn]+500;
+                flag=0;
+            }
+            if(p[turn]==24)
+            {
+                m[turn]=m[turn]-500;
+                pieces[turn].setLocation(xy.x[turn][8],xy.y[turn][8]);
+                p[turn]=8;
+                where="<html><h2>You landed on Go to Jail<br>So you have been arrested<br>Rs 500 has been debited</h2>";
+            }
             amt=m[turn];
+            try{  
+                Class.forName("com.mysql.jdbc.Driver");  
+                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");  
+                String query = "update players set amount ="+amt+" where pid="+turn;
+                con.prepareStatement(query).execute();
+                con.close();  
+                }catch(Exception ex){ System.out.println(ex);}
+                players[turn].setText(name[turn]+"("+amt+")");  
         }
            if(play>-1)
            {
@@ -194,18 +462,23 @@ public class board2 extends JFrame implements ActionListener
                     con.close();  
                     }catch(Exception ex){ System.out.println(ex);}  
            }
+           currentStatus.setText("<html><h2>"+where+what+"</h2><br>"+"<h2>"+work+"</h2>");
         repaint();
         
     }
     void set2(String x,String y,String z)
     {
+        currentStatus.setBounds(550,150,450,300);
+        currentStatus.setVisible(true);
+        currentStatus.setForeground(Color.BLACK);
+        add(currentStatus);
         // initializing and setting properties to pieces
         pieces[0]=new JTextArea();
         pieces[1]=new JTextArea();
         pieces[2]=new JTextArea();
         pieces[0].setBackground(Color.GREEN);
         pieces[0].setBounds(485,85,15,15);
-        pieces[1].setBackground(Color.PINK);
+        pieces[1].setBackground(Color.red);
         pieces[1].setBounds(470,85,15,15);
         pieces[2].setBackground(Color.YELLOW);
         pieces[2].setBounds(455,85,15,15);
@@ -216,51 +489,48 @@ public class board2 extends JFrame implements ActionListener
         add(pieces[2]);
 
         // setting properties for area that displays current city
-        city.setBounds(1200,400,150,200);
-        city.setBackground(colour);
-        city.setBorder(new TitledBorder(new LineBorder(Color.black, 5),"Current"));
-        add(city);
+        // city.setBounds(1200,400,150,200);
+        // city.setBackground(colour);
+        // city.setBorder(new TitledBorder(new LineBorder(Color.black, 5),"Current"));
+        // add(city);
         // setting properties for area that displays info of players / cities on clicking
         info.setBounds(1200,150,150,200);
         info.setBackground(colour);
         info.setBorder(new TitledBorder(new LineBorder(Color.black, 5),"info"));
+        Font f22=new Font("TimesRoman",Font.BOLD,15);
+        info.setFont(f22);
         add(info);
        
-            cities[1]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/MEDIRTERRANEAN AVENUE.png");
-            cities[2]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/COMMUNITY CHEST.png");
-            cities[3]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/BALTIC AVENUE.png");
-            cities[4]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/INCOME TAX.png");
-            cities[5]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/READING RAILROAD.png");
-            cities[6]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/ORIENTAL AVENUE.png");
-            cities[7]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/CHANCE.png");
-            // ImageIcon city8=new ImageIcon("images/VERMONT AVENUE.png");
-            // ImageIcon city9=new ImageIcon("images/CONNECTICUT AVENUE.png");
-            cities[9]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/ST. CHARLES PLACE.png");
-            cities[10]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/ELECTRIC COMPANY.png");
-            cities[11]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/STATES AVENUE.png");
-            cities[12]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/VIRGINIA AVENUE.png");
-            cities[13]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/PENNSYLVANIA RAILROAD.png");
-
-
-            cities[14]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/ST. JAMES PLACE.png");
-            cities[15]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/COMMUNITY CHEST 3.png");
-            // ImageIcon city=new ImageIcon("images/TENNESSEE AVENUE.png");
-            // ImageIcon city=new ImageIcon("images/NEW YORK AVENUE.png");
-            cities[17]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/KENTUCKY AVENUE.png");
-            cities[18]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/CHANCE 2.png");
-            cities[19]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/INDIANA AVENUE.png");
-            cities[20]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/ILLIONOIS AVENUE.png");
-            cities[21]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/B & O RAILROAD.png");
-            cities[22]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/ATLANTIC AVENUE.png");
-            cities[23]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/VENTNOR AVENUE.png");
-            // ImageIcon city24=new ImageIcon("images/WATER WORKS.png");
-            cities[25]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/PACIFIC AVENUE.png");
-            cities[26]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/NORTH CAROLINA AVENUE.png");
-            cities[27]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/COMMUNITY CHEST 3.png");
-            cities[28]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/PENNSYLVANIA AVENUE.png");
-            cities[29]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/SHORT LINE.png");
-            cities[30]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/CHANCE 3.png");
-            cities[31]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/PARK PLACE.png");
+        cities[1]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/MEDIRTERRANEAN AVENUE.png");
+        cities[2]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/COMMUNITY CHEST.png");
+         cities[3]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/BALTIC AVENUE.png");
+         cities[4]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/INCOME TAX.png"); 
+         cities[5]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/READING RAILROAD.png");
+         cities[6]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/ORIENTAL AVENUE.png");
+         cities[7]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/CHANCE.png");
+         cities[9]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/ST. CHARLES PLACE.png");
+         cities[10]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/ELECTRIC COMPANY.png");
+         cities[11]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/STATES AVENUE.png");
+         cities[12]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/VIRGINIA AVENUE.png");
+          cities[13]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/PENNSYLVANIA RAILROAD.png");
+        
+    
+         cities[14]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/ST. JAMES PLACE.png");
+         cities[15]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/COMMUNITY CHEST 4.png");
+         cities[17]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/KENTUCKY AVENUE.png");
+         cities[18]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/CHANCE 2.png");
+         cities[19]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/INDIANA AVENUE.png");
+         cities[20]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/ILLIONOIS AVENUE.png");
+         cities[21]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/B & O RAILROAD.png");
+         cities[22]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/ATLANTIC AVENUE.png");
+         cities[23]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/COMMUNITY CHEST 3.png");
+         cities[25]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/PACIFIC AVENUE.png");
+         cities[26]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/NORTH CAROLINA AVENUE.png");
+         cities[27]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/VENTNOR AVENUE.png");
+         cities[28]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/PENNSYLVANIA AVENUE.png");
+         cities[29]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/SHORT LINE.png");
+         cities[30]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/PARK PLACE.png");
+         cities[31]=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/images/CHANCE 3.png");
         //  setting properties for corner squares of board
         btns[0]=new JButton(go);
         btns[0].setVisible(true);
@@ -353,10 +623,26 @@ public class board2 extends JFrame implements ActionListener
             else
             {
                 btns[i].setLocation(500+(i-1)*70,100);
+                if(i<7)
+                {
+                    owns[i]=new JLabel();
+                    owns[i].setBounds(500+(i-1)*70,200,70,10);
+                    // owns[i-1].setBackground(colour);
+                    // owns[i-1].setOpaque(true);
+                    add(owns[i]);
+                }
             }
         }
         for(int i=9;i<17;i++)
         {
+            if(i<16)
+            {
+                owns[i]=new JLabel();
+                owns[i].setBounds(980,200+(i-9)*70,10,70);
+                // owns[i].setBackground(colour);
+                // owns[i].setOpaque(true);
+                add(owns[i]);
+            }
             if(i==9)
             {
                 btns[i].setLocation(990,200);
@@ -368,6 +654,11 @@ public class board2 extends JFrame implements ActionListener
         }
         for(int i=17;i<24;i++)
         {
+            owns[i]=new JLabel();
+            owns[i].setBounds(920-(i-17)*70,680,70,10);
+            // owns[i].setBackground(colour);
+            // owns[i].setOpaque(true);
+            add(owns[i]);
             if(i==17)
             {
                 btns[i].setLocation(920,690);
@@ -386,6 +677,11 @@ public class board2 extends JFrame implements ActionListener
             else
             {
                 btns[i].setLocation(400,690-(i-24)*70);
+                owns[i]=new JLabel();
+                owns[i].setBounds(500,690-(i-24)*70,10,70);
+                // owns[i].setBackground(colour);
+                // owns[i].setOpaque(true);
+                add(owns[i]);
             }
         }
         // assigning initial money to players
@@ -395,45 +691,57 @@ public class board2 extends JFrame implements ActionListener
         // player buttons
         players[0]=new JButton(x+"("+m[0]+")");
         players[0].setVisible(true);
-        players[0].setSize(180,30);
+        players[0].setSize(240,40);
         players[0].setCursor(cur);
         players[0].setLocation(50,400);
         players[0].setForeground(Color.RED);
-        players[0].addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e)
-            {
-               city.setText(x+"\n"+x);
-            }
-        });
+        // players[0].addActionListener(new ActionListener(){
+        //     public void actionPerformed(ActionEvent e)
+        //     {
+        //        city.setText(x+"\n"+x);
+        //     }
+        // });
         add(players[0]);
         players[1]=new JButton(y+"("+m[1]+")");
         players[1].setVisible(true);
-        players[1].setSize(180,30);
+        players[1].setSize(240,40);
         players[1].setCursor(cur);
-        players[1].setLocation(50,450);
+        players[1].setLocation(50,460);
         players[1].setForeground(Color.RED);
-        players[1].addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e)
-            {
-               city.setText(y+"\n"+y);
-            }
-        });
+        buy.setForeground(Color.WHITE);                                      
+        buy.setBorder(BorderFactory.createLineBorder(Color.WHITE,3));
+        buy.setBackground(Color.BLUE);
+        roll.setForeground(Color.WHITE);                                      
+        roll.setBorder(BorderFactory.createLineBorder(Color.WHITE,3));
+        roll.setBackground(Color.BLUE);
+        // players[1].addActionListener(new ActionListener(){
+        //     public void actionPerformed(ActionEvent e)
+        //     {
+        //        city.setText(y+"\n"+y);
+        //     }
+        // });
         add(players[1]);
 
 
 
         players[2]=new JButton(z+"("+m[2]+")");
         players[2].setVisible(true);
-        players[2].setSize(180,30);
+        players[2].setSize(240,40);
         players[2].setCursor(cur);
-        players[2].setLocation(50,500);
+        players[2].setLocation(50,520);
         players[2].setForeground(Color.RED);
-        players[2].addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e)
-            {
-               city.setText(z+"\n"+z);
-            }
-        });
+        for(int i=0;i<players.length;i++)
+        {
+            players[i].setForeground(Color.WHITE);                                      
+            players[i].setBorder(BorderFactory.createLineBorder(Color.WHITE,3));
+            players[i].setBackground(Color.BLACK); 
+        }
+        // players[2].addActionListener(new ActionListener(){
+        //     public void actionPerformed(ActionEvent e)
+        //     {
+        //        city.setText(z+"\n"+z);
+        //     }
+        // });
         add(players[2]);
 
 
@@ -458,20 +766,32 @@ public class board2 extends JFrame implements ActionListener
         game[0].setLocation(1200,750);
         game[0].setForeground(Color.RED);
         add(game[0]);
+        game[0].setForeground(Color.WHITE);                                      
+        game[0].setBorder(BorderFactory.createLineBorder(Color.WHITE,3));
+        game[0].setBackground(Color.BLUE);
+        game[1].setForeground(Color.WHITE);                                      
+        game[1].setBorder(BorderFactory.createLineBorder(Color.WHITE,3));
+        game[1].setBackground(Color.BLUE);
+        game[0].addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e)
+            {
+                JOptionPane.showMessageDialog(null,"game ended", "title",JOptionPane.PLAIN_MESSAGE);
+                System.exit(0);
+            }
+        });;
         // dice rolling button
         roll.setVisible(true);
-        roll.setSize(80,30);
+        roll.setSize(210,30);
         roll.setCursor(cur);
-        roll.setLocation(575,650);
-        roll.setForeground(Color.RED);
+        roll.setLocation(640,650);
+        // roll.setForeground(Color.RED);
         roll.addActionListener(this);
         add(roll);
         // buy button
         buy.setVisible(true);
         buy.setSize(80,30);
         buy.setCursor(cur);
-        buy.setLocation(850,550);
-        buy.setForeground(Color.RED);
+        buy.setLocation(1235,360);
         buy.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                  int cost=0;
@@ -513,6 +833,19 @@ public class board2 extends JFrame implements ActionListener
                     {
                         m[turn]=m[turn]-cost;
                         amt=m[turn];
+                        currentStatus.setText("<html><h2>You bought "+c.C[p[turn]]+"</h2>");
+                        switch(turn)
+                        {
+                            case 0 : owns[p[turn]].setBackground(Color.GREEN);
+                                     owns[p[turn]].setOpaque(true);
+                                     break;
+                            case 1 : owns[p[turn]].setBackground(Color.red);
+                                     owns[p[turn]].setOpaque(true);
+                                     break;
+                            case 2 : owns[p[turn]].setBackground(Color.YELLOW);
+                                     owns[p[turn]].setOpaque(true);
+                                     break;
+                        }
                     }
                 if(turn==1){
                     players[turn].setText(y+"("+m[turn]+")");
@@ -549,17 +882,25 @@ public class board2 extends JFrame implements ActionListener
             } 
         });
         add(buy);
+        Font f=new Font("TimesRoman",Font.BOLD,20);
+        game[0].setFont(f);
+        game[1].setFont(f);
+        buy.setFont(f);
+        roll.setFont(f);
+        players[0].setFont(f);
+        players[1].setFont(f);
+        players[2].setFont(f);
         // title and icon for frame
         this.setTitle("monopoly game");                                        
         this.setIconImage(icon.getImage()); 
         setSize(1500, 1500);
-        ImageIcon dice1=new ImageIcon(getClass().getResource("1.png"));
-        ImageIcon dice2=new ImageIcon(getClass().getResource("2.png"));
+        ImageIcon dice1=new ImageIcon(getClass().getResource("face1.png"));
+        ImageIcon dice2=new ImageIcon(getClass().getResource("face2.png"));
         f1=new JLabel(dice1);
         f2=new JLabel(dice2);
         //creating labels to display dice faces
-        f1.setBounds(550,550,50,50);
-        f2.setBounds(650,550,50,50);
+        f1.setBounds(675,550,50,50);
+        f2.setBounds(765,550,50,50);
         add(f1);
         add(f2);   
     }
@@ -567,11 +908,47 @@ public class board2 extends JFrame implements ActionListener
 // class that has action listener for city and player buttons
 class information1 implements ActionListener
 {
+    cities c=new cities();
     public void actionPerformed(ActionEvent e)
     {
         // gets text from buttons that calls action
-        String str=((AbstractButton) e.getSource()).getText();
-        board2.info.setText(str);
+        // String str=((AbstractButton) e.getSource()).getText();
+        String city="";
+        String owner="None";
+        int rent=-1,price=-1;
+        int owns=-1;
+        for(int i=0;i<32;i++)
+        {
+            if((AbstractButton) e.getSource()==board2.btns[i])
+            {
+                try{  
+                    Class.forName("com.mysql.jdbc.Driver");  
+                    Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");  
+                    String query = "select landprice,rent from land where lid="+i;
+                    String query1 = "select pid from owns where lid="+i;
+                    Statement stmt=con.createStatement(); 
+                    ResultSet rs=stmt.executeQuery(query);  
+                    while(rs.next())
+                    {
+                        price = rs.getInt(1); 
+                        rent = rs.getInt(2); 
+                    }
+                    ResultSet rs1=stmt.executeQuery(query1);  
+                    while(rs1.next())
+                    {
+                        owns = rs1.getInt(1);  
+                    }
+                    if(owns!=-1)
+                    {
+                        owner=board2.name[owns];
+                    }
+                    con.close();  
+                    }catch(Exception ex){ System.out.println(ex);} 
+                city=c.C[i];
+                board2.info.setText(city+"\nprice = Rs"+price+"\nrent = Rs"+rent+"\nowner - "+owner);
+                break;
+            }
+        }
         // System.out.println(str);
     }
 }
