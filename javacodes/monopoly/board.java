@@ -254,7 +254,7 @@ public class board extends JFrame implements ActionListener
         p[1]=0;
         // sets turn to play for player 1
         turn=0;
-        // mySql connection - incomplete                    
+          // Inserting into players table once the game begins:                 
         try{  
             Class.forName("com.mysql.jdbc.Driver");  
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");  
@@ -367,10 +367,10 @@ public class board extends JFrame implements ActionListener
             }catch(Exception ex){ System.out.println(ex);}
             communityChest(task,turn,m,players,1); 
         }
-        // shows info of current city + recent player in it
-        // city.setText(c.C[p[turn]]+"\n"+players[turn].getText());
-        // sets location of piece of player with current turn
+        
         pieces[turn].setLocation(xy.x[turn][p[turn]],xy.y[turn][p[turn]]);
+        //Updating players table when a player gives rent to the owner of the land:
+        //Inserting into moves table
         try{  
             Class.forName("com.mysql.jdbc.Driver");  
             
@@ -778,6 +778,9 @@ public class board extends JFrame implements ActionListener
             {
                 int cost=0;
                 int play=-1;
+               // Updating players table when a player buys a land:
+               //Inserting into owns
+               //Retriving data from db
                 try{  
                     Class.forName("com.mysql.jdbc.Driver");  
                     Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");  
