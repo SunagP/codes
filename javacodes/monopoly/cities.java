@@ -1,4 +1,5 @@
-// city names
+
+package monopoly;
 public class cities {
     public String C[]=new String[32];
     public cities(){
@@ -38,8 +39,7 @@ public class cities {
     
     
 }
-// coordinates for pieces x[i][j] => x coordinate for piece of player i in city j 
-//                        y[i][j] => y coordinate for piece of player i in city j 
+
 class coordinates{
     public int x[][]=new int[4][32];
     public int y[][]=new int[4][32];

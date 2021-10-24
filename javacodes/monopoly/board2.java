@@ -1,3 +1,4 @@
+package monopoly;
 import java.awt.Color;
 import java.awt.*;
 import javax.swing.*;
@@ -13,55 +14,55 @@ public class board2 extends JFrame implements ActionListener
     int moveNumber=0;
     ImageIcon cities[]=new ImageIcon[32]; 
     static String name[]=new String[3];
-    // money of each player
+    
     int m[]=new int[3];
-    //class that implements action listener for displaying info of players and cities
+
     information1 in=new information1();
-    // class that contains names of cities - cities.java
+   
     cities c=new cities();
-    // determines whose turn to play
+   
     int turn=0;
-    //current positions of each players
+    
     int p[]=new int[3];
-    // to get random numbers for dice
+    
     Random r=new Random();
+
+
     Color colour=new Color(190,245,221);
-    // numbers on faces of dice
+    
     int face1,face2;
-    // icon of the frame
+   
     ImageIcon icon=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/icon.jpg");
-    // buttons for all 32 places
+    
     static JButton btns[]=new JButton[32];
-    // buttons for all players
+  
     JButton players[]=new JButton[3];
-    // end game and end turn buttons
+    
     JButton game[]=new JButton[2];
-    // button to roll dice
+    
     JButton roll=new JButton("Roll dice");
-    // button for buying 
+    
     JButton buy=new JButton("Buy");
     Cursor cur = new Cursor(Cursor.HAND_CURSOR);
-    // images for places
+   
     ImageIcon city1=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/123.jpg");
     ImageIcon jail=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/jail2.jpg");                                 
     ImageIcon parking=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/parking2.jpg");                                 
     ImageIcon goTojail=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/gotojail2.jpg");                                 
     ImageIcon go=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/go2.png");
-    //images for dice faces 
+    
     ImageIcon dice1,dice2;
-    // area to display info about current city
-    // JTextArea city=new JTextArea();
     static JTextArea info=new JTextArea();
-    // background of the frame
+   
     ImageIcon background=new ImageIcon("C:/Users/Asus/Desktop/GIT/codes/javacodes/monopoly/bgfade.jpg");    
     JLabel back=new JLabel("",background,JLabel.CENTER); 
-    // labels where dice faces are shown
+    
     JLabel f1,f2;
-    // pieces
+    
     JTextArea pieces[]=new JTextArea[3];
-    // class that contains coordinates for pieces - cities.java
-    coordinates xy=new coordinates();
-    // string x,y are names of 2 players entered in start frame by user - monopoly.java 
+    
+    coordinates xy = new coordinates();
+     
     public void communityChest(int task,int turn,int m[],JButton players[],int board)
     {
         switch(task)
@@ -246,7 +247,7 @@ public class board2 extends JFrame implements ActionListener
         setLayout(null);                       
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         set2(x,y,z);
-        // back=>labelObject for backgroung image : setting size
+        
         back.setBounds(0,0,1500,850);
         add(back);
         // sets initial position to city0
@@ -255,7 +256,7 @@ public class board2 extends JFrame implements ActionListener
         p[2]=0;
         // sets turn to play for player 1
         turn=0;
-        // mySql connection - incomplete                    
+                           
         try{  
             Class.forName("com.mysql.jdbc.Driver");  
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/monopoly","root","");  
@@ -310,10 +311,10 @@ public class board2 extends JFrame implements ActionListener
         int rent=0;
         int sumDice=0;
         // random numbers chosen
-        face1=r.nextInt(6)+1;
-        face2=r.nextInt(6)+1;
-        // face1=1;
-        // face2=1;
+        // face1=r.nextInt(6)+1;
+        // face2=r.nextInt(6)+1;
+        face1=1;
+        face2=1;
         sumDice=face1+face2;
         // images corresponding to those random numbers
         dice1=new ImageIcon(getClass().getResource("face"+face1+".png"));
@@ -380,7 +381,7 @@ public class board2 extends JFrame implements ActionListener
         // city.setText(c.C[p[turn]]+"\n"+players[turn].getText());
         // sets location of piece of player with current turn
         pieces[turn].setLocation(xy.x[turn][p[turn]],xy.y[turn][p[turn]]);
-
+       //paying rent
         try{  
             Class.forName("com.mysql.jdbc.Driver");  
             
@@ -398,7 +399,7 @@ public class board2 extends JFrame implements ActionListener
               
             con.close();  
        
-        }catch(Exception ex){ System.out.println(ex);} 
+        }catch(Exception ex){System.out.println(ex);} 
         if(play==turn)
         {
             amt=m[turn];
@@ -773,9 +774,14 @@ public class board2 extends JFrame implements ActionListener
         game[1].setBorder(BorderFactory.createLineBorder(Color.WHITE,3));
         game[1].setBackground(Color.BLUE);
         game[0].addActionListener(new ActionListener(){
+            int max = 0;
             public void actionPerformed(ActionEvent e)
-            {
-                JOptionPane.showMessageDialog(null,"game ended", "title",JOptionPane.PLAIN_MESSAGE);
+              
+            {   for(int i=1;i<3;i++){
+                  if(m[max]<m[i])
+                  max = i;
+            }
+                JOptionPane.showMessageDialog(null,"game ended \n"+name[max]+" won the game\n", "title",JOptionPane.PLAIN_MESSAGE);
                 System.exit(0);
             }
         });;
@@ -793,6 +799,7 @@ public class board2 extends JFrame implements ActionListener
         buy.setCursor(cur);
         buy.setLocation(1235,360);
         buy.addActionListener(new ActionListener(){
+            //buys land
             public void actionPerformed(ActionEvent e){
                  int cost=0;
                 int play=-1;

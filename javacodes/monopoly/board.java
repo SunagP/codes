@@ -1,3 +1,6 @@
+package monopoly;
+
+
 import java.awt.Color;
 import java.awt.*;
 import javax.swing.*;
@@ -62,7 +65,7 @@ public class board extends JFrame implements ActionListener
     JTextArea pieces[]=new JTextArea[2];
     // class that contains coordinates for pieces - cities.java
     coordinates xy=new coordinates();
-    // string x,y are names of 2 players entered in start frame by user - monopoly.java  
+     
     public void communityChest(int task,int turn,int m[],JButton players[],int board)
     {
         switch(task)
@@ -246,13 +249,13 @@ public class board extends JFrame implements ActionListener
         setLayout(null);                       
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         set2(x,y);
-        // back=>labelObject for backgroung image : setting size
+        
         back.setBounds(0,0,1500,850);
         add(back);
-        // sets initial position to city0
+        
         p[0]=0;
         p[1]=0;
-        // sets turn to play for player 1
+       
         turn=0;
           // Inserting into players table once the game begins:                 
         try{  
@@ -261,7 +264,7 @@ public class board extends JFrame implements ActionListener
              
             // Statement stmt=con.createStatement();  
             String query = " insert into players (pid, pname, color ,amount)" + " values (?, ?, ?,?)";
-            // String query = "insert into catallog values(6,6,6)";
+           
             String query3 = "delete from moves";
             con.prepareStatement(query3).execute();
             String query2 = "delete from owns";
@@ -279,6 +282,7 @@ public class board extends JFrame implements ActionListener
             x2.setString(2,y);
             x2.setString(3,"red");
             x2.setInt(4, 10000);
+            
             x1.execute();
             x2.execute(); 
             
@@ -887,6 +891,7 @@ class information implements ActionListener
         String owner="None";
         int rent=-1,price=-1;
         int owns=-1;
+        //city clicks dbms
         for(int i=0;i<32;i++)
         {
             if((AbstractButton) e.getSource()==board.btns[i])

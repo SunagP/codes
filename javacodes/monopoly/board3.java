@@ -1,3 +1,4 @@
+package monopoly;
 import java.awt.Color;
 import java.awt.*;
 import javax.swing.*;
