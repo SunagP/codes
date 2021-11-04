@@ -1,6 +1,6 @@
 import socket
 import struct
-TCP_IP = '127.0.0.1'
+TCP_IP = '192.168.1.2'
 TCP_PORT = 62
 BUFFER_SIZE = 1024
 

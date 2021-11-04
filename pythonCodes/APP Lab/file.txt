@@ -1,0 +1,2 @@
+hi this is file with only few words to count 
+and we have multiple lines and many words in it,bye

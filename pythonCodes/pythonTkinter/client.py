@@ -9,7 +9,7 @@ def Verify_send():
     if x >=-60.0 and x <= 60.0:
          ba = bytearray(struct.pack("f", x))
 
-         host = '127.0.0.1'  # as both code is running on same pc
+         host = '192.168.1.1'  # as both code is running on same pc
          port = 62  # socket server port number
 
          client_socket = socket.socket()  # instantiate
