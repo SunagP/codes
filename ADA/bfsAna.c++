@@ -3,7 +3,7 @@
 #include <list>
 int count=0,count1=0;
 using namespace std;
-int c = 1;
+ int c = 1;
 class Graph {
   int n;
   list<int>* adj;
