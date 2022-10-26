@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Bubbles App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+
+        <style>
+            .button {
+              border: none;
+              color: white;
+              padding: 15px 32px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              margin: 4px 2px;
+              cursor: pointer;
+            }
+            
+            .button1 {background-color: #4CAF50;} 
+            .button2 {background-color: #008CBA;} 
+            </style>
+    </head>
+    <body>
+        <div style = "text-align:center; font-size: xx-large;">Bubbles App</div>
+        <div style = "text-align:center;">
+            <canvas id="myCanvas" width="1200" height="600" style="border:1px solid #000000;">
+                <p>I will display &#8592;</p>
+                
+            </canvas>
+        <br >
+        <div>
+            <button class="button button1">Hit</button>
+            <button class="button button2">Reset</button>
+        </div>
+        </div>
+        
+        
+            
+        
+        <script>
+
+
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            ctx.beginPath();
+            ctx.arc(200, 350, 150, 0, 2 * Math.PI);
+            ctx.fillStyle = 'blue';
+            ctx.fill();
+            ctx.stroke();
+
+
+//             var canvas=document.getElementById('myCanvas');
+// var ctx=canvas.getContext('2d');
+
+window.onload = function(){
+  drawArrow(ctx, 1100, 350, 1000, 350, 10, 'black');
+//drawArrow(ctx, 100, 10, 140, 140, 3, 'black');
+  
+}
+
+function drawArrow(ctx, fromx, fromy, tox, toy, arrowWidth, color){
+    //variables to be used when creating the arrow
+    var headlen = 10;
+    var angle = Math.atan2(toy-fromy,tox-fromx);
+ 
+    ctx.save();
+    ctx.strokeStyle = color;
+ 
+    //starting path of the arrow from the start square to the end square
+    //and drawing the stroke
+    ctx.beginPath();
+    ctx.moveTo(fromx, fromy);
+    ctx.lineTo(tox, toy);
+    ctx.lineWidth = arrowWidth;
+    ctx.stroke();
+ 
+    //starting a new path from the head of the arrow to one of the sides of
+    //the point
+    ctx.beginPath();
+    ctx.moveTo(tox, toy);
+    ctx.lineTo(tox-headlen*Math.cos(angle-Math.PI/7),
+               toy-headlen*Math.sin(angle-Math.PI/7));
+ 
+    //path from the side point of the arrow, to the other side point
+    ctx.lineTo(tox-headlen*Math.cos(angle+Math.PI/7),
+               toy-headlen*Math.sin(angle+Math.PI/7));
+ 
+    //path from the side point back to the tip of the arrow, and then
+    //again to the opposite side point
+    ctx.lineTo(tox, toy);
+    ctx.lineTo(tox-headlen*Math.cos(angle-Math.PI/7),
+               toy-headlen*Math.sin(angle-Math.PI/7));
+ 
+    //draws the paths created above
+    ctx.stroke();
+    ctx.restore();
+}
+
+            
+
+
+
+            
+
+
+            
+
+            </script> 
+    </body>
+</html>
