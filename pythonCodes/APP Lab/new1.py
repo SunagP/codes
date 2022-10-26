@@ -1,6 +1,10 @@
-#this is hello world
-print("hello world")
-
-#hi this is comment
-
-print("new line")
+text_file = open("c.txt", "a+")
+text_file.write("Line 1\n")
+text_file.write("This is line 2\n")
+text_file.write("That makes this line 3\n")
+lines = ["L1\n","L2","L3\n"]
+text_file.writelines(lines)
+text_file.seek(0,0)
+a=text_file.read()
+print(a)
+text_file.close()
